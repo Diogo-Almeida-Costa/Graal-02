@@ -2,9 +2,9 @@
 
 Preencha os dados abaixo para identificar a autoria do trabalho.
 
-- Nome: *<insira seu nome aqui>*
-- Email: *<insira seu email aqui>*
-- Turma: *<insira sua turma aqui>*
+- Nome: *<insira José Diogo de Almeida Costa>*
+- Email: *<insira diogo.almeida.130@ufrn.edu.br>*
+- Turma: *<insira Programação I>*
 
 # Questões Finalizadas
 

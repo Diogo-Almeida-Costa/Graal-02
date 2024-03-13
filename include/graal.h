@@ -28,8 +28,23 @@ namespace graal {
  */
 template <typename Itr, typename Compare>
 std::pair<Itr, Itr> minmax(Itr first, Itr last, Compare cmp) {
-  // TODO: add your code here.
-  return { first, first };  // This is just a stub.
+  if(first == last){
+    return std::make_pair(last, last); //Caso entre um conteiner vazio, retornar dois iteradores iguais
+  }
+    //os iteradores do menor e do maior elemento são inicializados com a primeira posição
+    auto min_it = first;
+    auto max_it = first;
+
+    for(auto it = first; it != last; ++it){
+      if(cmp(*it, *min_it)){
+        min_it = it;
+      }
+      if(cmp(*max_it, *it)){
+        max_it = it;
+      }
+    }
+
+   return std::make_pair(min_it, max_it);
 }
 
 template <class BidirIt> void reverse(BidirIt first, BidirIt last) {
