@@ -8,6 +8,7 @@
 #define GRAAL_H
 
 #include <utility>
+#include <algorithm>
 using std::pair;
 
 namespace graal {
@@ -48,7 +49,13 @@ std::pair<Itr, Itr> minmax(Itr first, Itr last, Compare cmp) {
 }
 
 template <class BidirIt> void reverse(BidirIt first, BidirIt last) {
-  // TODO: add your code here.
+      while(first < last){
+        --last;
+        if(first != last){
+          std::swap(*first, *last);
+          ++first;
+        }
+      }
 }
 
 template <class InputIt> InputIt copy(InputIt first, InputIt last, InputIt d_first) {
