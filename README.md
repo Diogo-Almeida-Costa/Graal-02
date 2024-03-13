@@ -143,3 +143,4 @@ Em qualquer uma das duas situações descritas, lembre-se de remover a pasta que
 ---
 
 &copy; DIMAp/UFRN 2020-2024.
+#Graal-02
