@@ -9,6 +9,7 @@
 
 #include <utility>
 #include <algorithm>
+#include <vector>
 using std::pair;
 
 namespace graal {
@@ -30,9 +31,8 @@ namespace graal {
 template <typename Itr, typename Compare>
 std::pair<Itr, Itr> minmax(Itr first, Itr last, Compare cmp) {
   if(first == last){
-    return std::make_pair(last, last); //Caso entre um conteiner vazio, retornar dois iteradores iguais
+    return std::make_pair(first, first); 
   }
-    //os iteradores do menor e do maior elemento são inicializados com a primeira posição
     auto min_it = first;
     auto max_it = first;
 
@@ -43,6 +43,9 @@ std::pair<Itr, Itr> minmax(Itr first, Itr last, Compare cmp) {
       if(cmp(*max_it, *it)){
         max_it = it;
       }
+    }
+    if(min_it == max_it){
+      return std::make_pair(min_it, max_it);
     }
 
    return std::make_pair(min_it, max_it);
@@ -59,26 +62,45 @@ template <class BidirIt> void reverse(BidirIt first, BidirIt last) {
 }
 
 template <class InputIt> InputIt copy(InputIt first, InputIt last, InputIt d_first) {
-  // TODO: add your code here.
-  return first;  // This is just a stub.
+    while(first != last){
+      *d_first = *first;
+      ++first;
+      ++d_first;
+    }
+    return d_first;
 }
 
 template <class InputIt, class UnaryPredicate>
 InputIt find_if(InputIt first, InputIt last, UnaryPredicate p) {
-  // TODO: add your code here.
-  return first;  // This is just a stub.
+  while(first != last){
+    if(p(*first)){
+      return first;
+    }
+    ++first;
+  }
+  return last;
 }
 
 template <class InputIt, class UnaryPredicate>
 bool all_of(InputIt first, InputIt last, UnaryPredicate p) {
-  // TODO: add your code here.
-  return true;  // Just a STUB.
+  while(first != last){
+    if(!p(*first)){
+      return false;
+    }
+    ++first;
+  }
+  return true;
 }
 
 template <class InputIt, class UnaryPredicate>
 bool any_of(InputIt first, InputIt last, UnaryPredicate p) {
-  // TODO: add your code here.
-  return true;  // Just a STUB.
+  while(first != last){
+    if(p(*first)){
+      return true;
+    }
+    first++;
+  }
+  return false;
 }
 
 template <class InputIt, class UnaryPredicate>
@@ -106,8 +128,7 @@ template <class InputIt, class Equal> InputIt unique(InputIt first, InputIt last
 
 template <class ForwardIt, class UnaryPredicate>
 ForwardIt partition(ForwardIt first, ForwardIt last, UnaryPredicate p) {
-  // TODO: add your code here.
-  return first;  // This is just a stub.
+ 
 }
 
 }  // namespace graal.
