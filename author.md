@@ -2,12 +2,12 @@
 
 Preencha os dados abaixo para identificar a autoria do trabalho.
 
-- Nome: *<José Diogo de Almeida Costa>*
-- Email: *<diogo.almeida.130@ufrn.edu.br>*
-- Turma: *<Programação I>*
+- Nome: *< José Diogo de Almeida Costa >*
+- Email: *< diogo.almeida.130@ufrn.edu.br >*
+- Turma: *< Programação I >*
 
 # Questões Finalizadas
-
+ 
 - [ ] minmax
 - [x] reverse
 - [x] copy
