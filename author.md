@@ -2,20 +2,20 @@
 
 Preencha os dados abaixo para identificar a autoria do trabalho.
 
-- Nome: *<insira José Diogo de Almeida Costa>*
-- Email: *<insira diogo.almeida.130@ufrn.edu.br>*
-- Turma: *<insira Programação I>*
+- Nome: *<José Diogo de Almeida Costa>*
+- Email: *<diogo.almeida.130@ufrn.edu.br>*
+- Turma: *<Programação I>*
 
 # Questões Finalizadas
 
 - [ ] minmax
-- [ ] reverse
-- [ ] copy
-- [ ] find_if
-- [ ] all_of
-- [ ] any_of
-- [ ] none_of
-- [ ] equal
+- [x] reverse
+- [x] copy
+- [x] find_if
+- [x] all_of
+- [x] any_of
+- [x] none_of
+- [x] equal
 - [ ] unique
 - [ ] partition
 

@@ -29,13 +29,16 @@ namespace graal {
  * @return A pair of the smallest and greatest elements.
  *
  */
+
 template <typename Itr, typename Compare>
 std::pair<Itr, Itr> minmax(Itr first, Itr last, Compare cmp) {
   if(first == last){
-    return std::make_pair(first, first); 
+    return std::make_pair(last, last); 
   }
     auto min_it = first;
     auto max_it = first;
+
+    ++first;
 
     for(auto it = first; it != last; ++it){
       if(cmp(*it, *min_it)){
@@ -46,7 +49,7 @@ std::pair<Itr, Itr> minmax(Itr first, Itr last, Compare cmp) {
       }
     }
     if(min_it == max_it){
-      return std::make_pair(first, first);
+      return std::make_pair(min_it, min_it);
     }
 
    return std::make_pair(min_it, max_it);
@@ -250,7 +253,7 @@ template <class InputIt, class Equal> InputIt unique(InputIt first, InputIt last
     }
   }
 
-  return result;
+  return ++result;
 }
 
 template <class ForwardIt, class UnaryPredicate>
