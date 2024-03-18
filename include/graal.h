@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <vector>
 #include <cassert>
+#include <type_traits>
 using std::pair;
 
 namespace graal {
@@ -37,16 +38,24 @@ std::pair<Itr, Itr> minmax(Itr first, Itr last, Compare cmp) {
   }
     auto min_it = first;
     auto max_it = first;
-
+    
     ++first;
 
-    for(auto it = first; it != last; ++it){
+    /*for(auto it = first; it != last; ++it){
       if(cmp(*it, *min_it)){
         min_it = it;
       }
       if(cmp(*max_it, *it)){
         max_it = it;
       }
+    }*/
+    while(first != last){
+      if(cmp(*first, *min_it)){
+        min_it = first;
+      } else if(cmp(*max_it, *first)){
+        max_it = first;
+      }
+      ++first;
     }
     if(min_it == max_it){
       return std::make_pair(min_it, min_it);
@@ -246,30 +255,30 @@ template <class InputIt, class Equal> InputIt unique(InputIt first, InputIt last
   if(first == last){
     return last;
   }
-  auto result = first;
+  InputIt result = first;
   while(++first != last){
-    if(!eq(*result, *first) && ++result != first){
+    if(!(eq(*result, *first)) && ++result != first){
       *result = std::move(*first);
     }
   }
-
-  return ++result;
+  return result;
 }
 
 template <class ForwardIt, class UnaryPredicate>
 ForwardIt partition(ForwardIt first, ForwardIt last, UnaryPredicate p) {
-  /*while(first != last){
-    while(first != last && p(*first)){
-      first++;
+  while(first != last){
+    while(p(*first)){
+      if(++first == last){
+        return first;
+      }
     }
     do{
-      --last;
-    } while(first != last && !p(*last));
-    if(first != last){
-      std::iter_swap(first, last);
-      ++first;
-    }
-  }*/
+      if(--last == first){
+        return first;
+      }
+    } while(!p(*last));
+    std::iter_swap(first++, last);
+  }
   return first;
 }
 

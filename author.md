@@ -17,7 +17,13 @@ Preencha os dados abaixo para identificar a autoria do trabalho.
 - [x] none_of
 - [x] equal
 - [ ] unique
-- [ ] partition
+- [x] partition
 
 --------
+
+# Breve Descrição 
+
+No atual projeto, as funções minmax e unique apresentam limitações, pois não pude desenvolvê-las de modo a atender a todos os requisitos e passar em todos os testes. Na função minmax, encontrei dificuldades nos testes "All Equal" e "Repeated Values Random Order", enquanto na função unique, tive dificuldade nos testes "Some Repetitions" e "Mirror Unique".
+
+
 &copy; DIMAp/UFRN 2022.
