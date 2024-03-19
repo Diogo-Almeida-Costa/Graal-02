@@ -8,7 +8,7 @@ Preencha os dados abaixo para identificar a autoria do trabalho.
 
 # Questões Finalizadas
  
-- [ ] minmax
+- [x] minmax
 - [x] reverse
 - [x] copy
 - [x] find_if
@@ -16,14 +16,14 @@ Preencha os dados abaixo para identificar a autoria do trabalho.
 - [x] any_of
 - [x] none_of
 - [x] equal
-- [ ] unique
+- [x] unique
 - [x] partition
 
 --------
 
 # Breve Descrição 
 
-No atual projeto, as funções minmax e unique apresentam limitações, pois não pude desenvolvê-las de modo a atender a todos os requisitos e passar em todos os testes. Na função minmax, encontrei dificuldades nos testes "All Equal" e "Repeated Values Random Order", enquanto na função unique, tive dificuldade nos testes "Some Repetitions" e "Mirror Unique".
+Eu encontrei maior dificuldade com as funções 'unique' e 'minmax' devido às operações necessárias nelas, o que acabou me deixando um pouco confuso. No entanto, consegui entender as etapas finais necessárias para completar suas implementações.
 
 
 &copy; DIMAp/UFRN 2022.

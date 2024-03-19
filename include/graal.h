@@ -7,61 +7,41 @@
 #ifndef GRAAL_H
 #define GRAAL_H
 
-#include <utility>
-#include <algorithm>
-#include <vector>
-#include <cassert>
-#include <type_traits>
 using std::pair;
 
 namespace graal {
 
-/*!
- * Finds and returns a pair with the smallest and greatest elements in a range.
- *
- * @tparam Itr Iterator to the range.
- * @tparam Compare A regular comparison function.Comparison functor.
- *
- * @param first_ Pointer to the first element of the range we want to copy (inclusive).
- * @param last_ Pointer to the last element of the range we want to copy (exclusive).
- * @param cmp The comparison function that return true if the first element is *less* than the
- * second.
- *
- * @return A pair of the smallest and greatest elements.
- *
+/**
+ * @brief Encontra os elementos mínimo e máximo em um intervalo, usando um comparador personalizado.
+ * 
+ * Esta função encontra os elementos mínimo e máximo em um intervalo definido pelos iteradores 'first' e 'last',
+ * usando um comparador personalizado 'cmp' para determinar a ordem dos elementos.
+ * 
+ * @tparam Itr O tipo do iterador para o intervalo.
+ * @tparam Compare O tipo do comparador para ordenação.
+ * @param first Um iterador para o primeiro elemento do intervalo.
+ * @param last Um iterador para o último elemento do intervalo (exclusivo).
+ * @param cmp O comparador usado para determinar a ordem dos elementos. Deve retornar true se o primeiro elemento for considerado menor do que o segundo.
+ * @return Um par de iteradores, o primeiro apontando para o elemento mínimo e o segundo para o elemento máximo.
  */
 
 template <typename Itr, typename Compare>
 std::pair<Itr, Itr> minmax(Itr first, Itr last, Compare cmp) {
-  if(first == last){
-    return std::make_pair(last, last); 
-  }
-    auto min_it = first;
-    auto max_it = first;
-    
-    ++first;
-
-    /*for(auto it = first; it != last; ++it){
-      if(cmp(*it, *min_it)){
-        min_it = it;
-      }
-      if(cmp(*max_it, *it)){
-        max_it = it;
-      }
-    }*/
-    while(first != last){
-      if(cmp(*first, *min_it)){
-        min_it = first;
-      } else if(cmp(*max_it, *first)){
-        max_it = first;
-      }
-      ++first;
+   if(first == last){
+    return std::make_pair(first, first);
+   }
+   auto min_it = first;
+   auto max_it = first;
+   for(auto it = first; it != last; ++it){
+    if(cmp(*it, *min_it) || (!cmp(*min_it, *it) && it < min_it )){
+      min_it = it;
     }
-    if(min_it == max_it){
-      return std::make_pair(min_it, min_it);
+    if(cmp(*max_it, *it) || (!cmp(*it, *max_it) && it > max_it)){
+      max_it = it;
     }
+   }
 
-   return std::make_pair(min_it, max_it);
+  return std::make_pair(min_it, max_it);
 }
 
 
@@ -251,19 +231,42 @@ bool equal(InputIt1 first1, InputIt1 last1, InputIt2 first2, InputIt2 last2, Equ
   return true;
 }
 
+
+/**
+ * @brief Remove elementos duplicados consecutivos de um intervalo.
+ * 
+ * @tparam InputIt O tipo do iterador para o intervalo.
+ * @tparam Equal O tipo do functor de comparação de igualdade.
+ * @param first Um iterador para o primeiro elemento do intervalo.
+ * @param last Um iterador para o último elemento do intervalo (exclusivo).
+ * @param eq Functor que determina se dois elementos são considerados iguais.
+ * @return Um iterador apontando para o último elemento único no intervalo.
+ */
+
 template <class InputIt, class Equal> InputIt unique(InputIt first, InputIt last, Equal eq) {
   if(first == last){
-    return last;
+    return first;
   }
-  InputIt result = first;
+  auto result = first;
   while(++first != last){
-    if(!(eq(*result, *first)) && ++result != first){
+    if((eq(*result, *first)) ){
       *result = std::move(*first);
     }
   }
   return result;
 }
 
+
+/**
+ * @brief Rearranja os elementos em um intervalo de forma que os elementos que satisfazem um predicado estejam antes dos elementos que não satisfazem.
+ * 
+ * @tparam ForwardIt O tipo do iterador para o intervalo.
+ * @tparam UnaryPredicate O tipo do predicado unário que determina se um elemento satisfaz a condição.
+ * @param first Um iterador para o primeiro elemento do intervalo.
+ * @param last Um iterador para o último elemento do intervalo (exclusivo).
+ * @param p O predicado que determina se um elemento satisfaz a condição.
+ * @return Um iterador para o elemento imediatamente após o último elemento que satisfaz a condição.
+ */
 template <class ForwardIt, class UnaryPredicate>
 ForwardIt partition(ForwardIt first, ForwardIt last, UnaryPredicate p) {
   while(first != last){
